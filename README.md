@@ -249,3 +249,51 @@ cv2.destroyAllWindows()
 ```
 ### 執行結果：
 ![image](https://github.com/LonelyCaesar/OpenCV-license-plate-recognition/assets/101235367/c20185a7-e5fe-4700-b1b4-01a6e3f23490)
+### 4.	進行車牌辨識結果：
+前面的程式已將車牌號碼去除輪廓、雜訊、黑色部分去除就會變成乾淨完整的車牌號碼圖形後，現在使用ocr來辨識車牌。
+### 程式碼：
+```python
+import cv2
+from PIL import Image
+import sys
+import pyocr
+import pyocr.builders
+import re
+
+image = cv2.imread('assember8.jpg')
+#OCR辨識車牌
+tools = pyocr.get_available_tools()
+if len(tools) == 0:
+    print("No OCR tool found")
+    sys.exit(1)
+tool = tools[0]  #取得可用工具
+
+result = tool.image_to_string(
+    Image.open('assember0.jpg'),
+    builder=pyocr.builders.TextBuilder()
+)
+# 將 ocr 辨識結果優化
+txt=result.replace("!","1") # 如果是 ! 字元，更改為字元 1
+real_txt=re.findall(r'[A-Z]+|[\d]+',txt) #只取數字和大寫英文字母
+
+#組合真正的車牌
+txt_Plate="" 
+for char in real_txt:
+    txt_Plate += char
+print("ocr 辨識結果：", result)
+print("優化後辨識結果：",txt_Plate)
+
+cv2.imshow('image', image)     #顯示原始圖形
+cv2.moveWindow("image",500,250)#將視窗移到指定位置   
+key = cv2.waitKey(0)           #按任意鍵結束
+cv2.destroyAllWindows()
+```
+### 執行結果：
+![image](https://github.com/LonelyCaesar/OpenCV-license-plate-recognition/assets/101235367/86136018-1eb1-4041-95bf-c068518a9bd2)
+# 四、結論
+使用OCR辨識車牌號碼時就必須要有個完整乾淨的圖形，就能將車牌號碼辨識的很準確，要正確的擷取到車牌號碼和訓練的模型有很大的影響，要爭增加模型的準確性，就必須要有大量的車牌作訓練。即使正確的擷取車牌號碼，車牌大小、歪斜、不清晰、光線落差、反光以及拍攝角度，都會影響辨識的結果，因此，OCR辨識比較適合在特地的場合，攝影機位置調整好，車牌大小、可控制角度以及光線好，這樣就可以達到很高的辨識率。
+
+生活上除了車牌號碼可以透過影像辨識來管理，其他如通行證、身分證等，亦或是更複雜的文件上有文字、數字及特殊符號都可以透過人工智慧的影像辨識來處理，讓人們的生活更加便利，也更加安全。
+# 五、參考資料
+1.	Python機器學習超進化：AI影像辨識跨界應用實戰。
+2.	巨匠電腦Python人工智慧整合開發課程。
