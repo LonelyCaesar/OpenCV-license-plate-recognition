@@ -9,3 +9,9 @@ OpenCV最為人稱道為「人臉辨識」。使用OpenCV提供的Haar特徵分�
 Haar特徵是用來描繪一張圖片。Haar特徵是一個矩形區域，可進行選轉、平移、縮放等，有15個類型。
 
 ![image](https://github.com/LonelyCaesar/OpenCV-license-plate-recognition/assets/101235367/3321f368-9a6c-48b8-899a-056494d02a2c)
+
+Haar特徵分類器可以幫我們在圖片或照片中偵測某特定物件是否存在，並可得知該物件的座標位置。這個套特定物件可以是人臉、交通標誌、動物等使用Haar特徵分類器模型分析。
+# 三、實作
+首先將要辨識的車牌圖片檔案更名為車牌號碼，使用OCR辨識車牌號碼後就可以將辨識結果與檔名名稱直接做比對，能不能辨識正確。
+
+註：執行套件pip install pillow、pip install opencv-python。
