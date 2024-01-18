@@ -15,3 +15,56 @@ Haar特徵分類器可以幫我們在圖片或照片中偵測某特定物件是�
 首先將要辨識的車牌圖片檔案更名為車牌號碼，使用OCR辨識車牌號碼後就可以將辨識結果與檔名名稱直接做比對，能不能辨識正確。
 
 註：執行套件pip install pillow、pip install opencv-python。
+
+### 1.	原始圖片轉換尺寸及偵測：
+將所有數位相機拍攝或下載圖片尺寸轉換為300x225像素圖形，也使用<haar_carplate.xml>模型做偵測。
+### 程式碼：
+``` Python
+import PIL
+from PIL import Image
+import glob
+import shutil, os
+from time import sleep
+dirResize('predictPlate_sr', 'predictPlate')
+import cv2
+import glob
+
+def emptydir(dirname):         #清空資料夾
+    if os.path.isdir(dirname): #資料夾存在就刪除
+        shutil.rmtree(dirname)
+        sleep(2)       #需延遲,否則會出錯
+    os.mkdir(dirname)  #建立資料夾
+
+def dirResize(src, dst):
+    myfiles = glob.glob(src + '/*.JPG') #讀取資料夾全部jpg檔案
+    emptydir(dst)
+    print(src + ' 資料夾：')
+    print('開始轉換圖形尺寸！')
+    for f in myfiles:
+        fname = f.split("\\")[-1]
+        img = Image.open(f)
+        img_new = img.resize((300, 225), PIL.Image.LANCZOS)  #尺寸300x225
+        img_new.save(dst + '/' + fname)
+    print('轉換圖形尺寸完成！\n')
+files = glob.glob("predictPlate/*.jpg")
+
+for file in files:
+    print('圖片檔案：' + file)
+    img = cv2.imread(file)
+    detector = cv2.CascadeClassifier('haar_carplate.xml')
+    signs = detector.detectMultiScale(img, minSize=(76, 20), scaleFactor=1.1, minNeighbors=4)
+    if len(signs) > 0 :
+        for (x, y, w, h) in signs:          
+            cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)  
+            print(signs)
+    else:
+        print('沒有偵測到車牌！')
+    
+    cv2.imshow('Frame', img)
+    key = cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    if key == 113 or key==81:  #按q鍵結束
+        break
+
+
+```
