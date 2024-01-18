@@ -17,8 +17,8 @@ Haar特徵分類器可以幫我們在圖片或照片中偵測某特定物件是�
 註：執行套件
 ```
 pip install pillow
+pip install opencv-python
 ```
-、pip install opencv-python。
 
 ### 1.	原始圖片轉換尺寸及偵測：
 將所有數位相機拍攝或下載圖片尺寸轉換為300x225像素圖形，也使用<haar_carplate.xml>模型做偵測。
