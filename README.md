@@ -65,6 +65,11 @@ for file in files:
     cv2.destroyAllWindows()
     if key == 113 or key==81:  #按q鍵結束
         break
-
-
 ```
+### 執行結果：
+![image](https://github.com/LonelyCaesar/OpenCV-license-plate-recognition/assets/101235367/e21ee51c-fabe-4183-bf84-ef569764cdcc)
+
+### 2.	擷取車牌號碼圖形：
+使用Haar特徵分類器<haar_carplate.xml>模型框選出車牌號碼，並將車牌號碼圖形擷取下來。
+### 程式碼：
+
