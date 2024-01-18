@@ -25,7 +25,6 @@ from PIL import Image
 import glob
 import shutil, os
 from time import sleep
-dirResize('predictPlate_sr', 'predictPlate')
 import cv2
 import glob
 
@@ -47,6 +46,7 @@ def dirResize(src, dst):
         img_new.save(dst + '/' + fname)
     print('轉換圖形尺寸完成！\n')
 files = glob.glob("predictPlate/*.jpg")
+dirResize('predictPlate_sr', 'predictPlate')
 
 for file in files:
     print('圖片檔案：' + file)
