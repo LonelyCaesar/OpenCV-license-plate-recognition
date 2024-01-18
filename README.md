@@ -14,7 +14,11 @@ Haar特徵分類器可以幫我們在圖片或照片中偵測某特定物件是�
 # 三、實作
 首先將要辨識的車牌圖片檔案更名為車牌號碼，使用OCR辨識車牌號碼後就可以將辨識結果與檔名名稱直接做比對，能不能辨識正確。
 
-註：執行套件pip install pillow、pip install opencv-python。
+註：執行套件
+```
+pip install pillow
+```
+、pip install opencv-python。
 
 ### 1.	原始圖片轉換尺寸及偵測：
 將所有數位相機拍攝或下載圖片尺寸轉換為300x225像素圖形，也使用<haar_carplate.xml>模型做偵測。
