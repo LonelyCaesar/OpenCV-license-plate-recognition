@@ -18,6 +18,7 @@ Haar特徵分類器可以幫我們在圖片或照片中偵測某特定物件是�
 ```
 pip install pillow
 pip install opencv-python
+pip install pyocr
 ```
 
 ### 1.	原始圖片轉換尺寸及偵測：
