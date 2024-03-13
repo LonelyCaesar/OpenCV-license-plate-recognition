@@ -256,6 +256,8 @@ cv2.destroyAllWindows()
 ![image](https://github.com/LonelyCaesar/OpenCV-license-plate-recognition/assets/101235367/c20185a7-e5fe-4700-b1b4-01a6e3f23490)
 ### 4.	進行車牌辨識結果：
 前面的程式已將車牌號碼去除輪廓、雜訊、黑色部分去除就會變成乾淨完整的車牌號碼圖形後，現在使用ocr來辨識車牌。
+請先下載安裝<tesseract-ocr-w64-setup-v5.0.0-alpha.20200328.exe>檔，然後連續按Next。
+將安裝好的目錄放到編輯系統環境變數/環境變數/User的使用者變數path/<C:\Program Files\Tesseract-OCR>上面，然後都按確定。
 ### 程式碼：
 ```python
 import cv2
